@@ -84,6 +84,39 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 // Utilities
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -96,6 +129,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   data: function data() {
     return {
+      admins: [["Management", "mdi-account-multiple-outline"], ["Settings", "mdi-cog-outline"]],
+      cruds: [["Create", "mdi-plus-outline"], ["Read", "mdi-file-outline"], ["Update", "mdi-update"], ["Delete", "mdi-delete"]],
       items: [{
         icon: "mdi-view-dashboard",
         title: "dashboard",
@@ -404,23 +439,6 @@ var render = function () {
               ]
             },
           },
-          {
-            key: "append",
-            fn: function () {
-              return [
-                _c("shared-item", {
-                  attrs: {
-                    item: {
-                      title: _vm.$t("upgrade"),
-                      icon: "mdi-package-up",
-                      to: "/upgrade",
-                    },
-                  },
-                }),
-              ]
-            },
-            proxy: true,
-          },
         ]),
         model: {
           value: _vm.drawer,
@@ -486,19 +504,170 @@ var render = function () {
         [
           _c("div"),
           _vm._v(" "),
-          _vm._l(_vm.computedItems, function (item, i) {
-            return [
-              item.children
-                ? _c("shared-item-group", {
-                    key: "group-" + i,
-                    attrs: { item: item },
-                  })
-                : _c("shared-item", {
-                    key: "item-" + i,
-                    attrs: { item: item },
-                  }),
-            ]
-          }),
+          [
+            _c(
+              "v-card",
+              { staticClass: "mx-auto", attrs: { width: "300" } },
+              [
+                _c(
+                  "v-list",
+                  [
+                    _c(
+                      "v-list-item",
+                      [
+                        _c(
+                          "v-list-item-icon",
+                          [_c("v-icon", [_vm._v("mdi-home")])],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c("v-list-item-title", [_vm._v("Home")]),
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "v-list-group",
+                      {
+                        attrs: {
+                          value: true,
+                          "prepend-icon": "mdi-account-circle",
+                        },
+                        scopedSlots: _vm._u([
+                          {
+                            key: "activator",
+                            fn: function () {
+                              return [
+                                _c("v-list-item-title", [_vm._v("Users")]),
+                              ]
+                            },
+                            proxy: true,
+                          },
+                        ]),
+                      },
+                      [
+                        _vm._v(" "),
+                        _c(
+                          "v-list-group",
+                          {
+                            attrs: {
+                              value: true,
+                              "no-action": "",
+                              "sub-group": "",
+                            },
+                            scopedSlots: _vm._u([
+                              {
+                                key: "activator",
+                                fn: function () {
+                                  return [
+                                    _c(
+                                      "v-list-item-content",
+                                      [
+                                        _c("v-list-item-title", [
+                                          _vm._v("Admin"),
+                                        ]),
+                                      ],
+                                      1
+                                    ),
+                                  ]
+                                },
+                                proxy: true,
+                              },
+                            ]),
+                          },
+                          [
+                            _vm._v(" "),
+                            _vm._l(_vm.admins, function (ref, i) {
+                              var title = ref[0]
+                              var icon = ref[1]
+                              return _c(
+                                "v-list-item",
+                                { key: i, attrs: { link: "" } },
+                                [
+                                  _c("v-list-item-title", {
+                                    domProps: { textContent: _vm._s(title) },
+                                  }),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-list-item-icon",
+                                    [
+                                      _c("v-icon", {
+                                        domProps: { textContent: _vm._s(icon) },
+                                      }),
+                                    ],
+                                    1
+                                  ),
+                                ],
+                                1
+                              )
+                            }),
+                          ],
+                          2
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "v-list-group",
+                          {
+                            attrs: { "no-action": "", "sub-group": "" },
+                            scopedSlots: _vm._u([
+                              {
+                                key: "activator",
+                                fn: function () {
+                                  return [
+                                    _c(
+                                      "v-list-item-content",
+                                      [
+                                        _c("v-list-item-title", [
+                                          _vm._v("Actions"),
+                                        ]),
+                                      ],
+                                      1
+                                    ),
+                                  ]
+                                },
+                                proxy: true,
+                              },
+                            ]),
+                          },
+                          [
+                            _vm._v(" "),
+                            _vm._l(_vm.cruds, function (ref, i) {
+                              var title = ref[0]
+                              var icon = ref[1]
+                              return _c(
+                                "v-list-item",
+                                { key: i, attrs: { link: "" } },
+                                [
+                                  _c("v-list-item-title", {
+                                    domProps: { textContent: _vm._s(title) },
+                                  }),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-list-item-icon",
+                                    [
+                                      _c("v-icon", {
+                                        domProps: { textContent: _vm._s(icon) },
+                                      }),
+                                    ],
+                                    1
+                                  ),
+                                ],
+                                1
+                              )
+                            }),
+                          ],
+                          2
+                        ),
+                      ],
+                      1
+                    ),
+                  ],
+                  1
+                ),
+              ],
+              1
+            ),
+          ],
           _vm._v(" "),
           _c("div"),
         ],
@@ -531,13 +700,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 /* harmony import */ var _node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! !../../../../node_modules/vuetify-loader/lib/runtime/installComponents.js */ "./node_modules/vuetify-loader/lib/runtime/installComponents.js");
 /* harmony import */ var _node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var vuetify_lib_components_VDivider__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vuetify/lib/components/VDivider */ "./node_modules/vuetify/lib/components/VDivider/VDivider.js");
-/* harmony import */ var vuetify_lib_components_VImg__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuetify/lib/components/VImg */ "./node_modules/vuetify/lib/components/VImg/VImg.js");
-/* harmony import */ var vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vuetify/lib/components/VList */ "./node_modules/vuetify/lib/components/VList/VList.js");
-/* harmony import */ var vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vuetify/lib/components/VList */ "./node_modules/vuetify/lib/components/VList/VListItem.js");
-/* harmony import */ var vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vuetify/lib/components/VList */ "./node_modules/vuetify/lib/components/VList/VListItemAvatar.js");
-/* harmony import */ var vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! vuetify/lib/components/VList */ "./node_modules/vuetify/lib/components/VList/index.js");
-/* harmony import */ var vuetify_lib_components_VNavigationDrawer__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! vuetify/lib/components/VNavigationDrawer */ "./node_modules/vuetify/lib/components/VNavigationDrawer/VNavigationDrawer.js");
+/* harmony import */ var vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vuetify/lib/components/VCard */ "./node_modules/vuetify/lib/components/VCard/VCard.js");
+/* harmony import */ var vuetify_lib_components_VDivider__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuetify/lib/components/VDivider */ "./node_modules/vuetify/lib/components/VDivider/VDivider.js");
+/* harmony import */ var vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vuetify/lib/components/VIcon */ "./node_modules/vuetify/lib/components/VIcon/VIcon.js");
+/* harmony import */ var vuetify_lib_components_VImg__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vuetify/lib/components/VImg */ "./node_modules/vuetify/lib/components/VImg/VImg.js");
+/* harmony import */ var vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vuetify/lib/components/VList */ "./node_modules/vuetify/lib/components/VList/VList.js");
+/* harmony import */ var vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! vuetify/lib/components/VList */ "./node_modules/vuetify/lib/components/VList/VListGroup.js");
+/* harmony import */ var vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! vuetify/lib/components/VList */ "./node_modules/vuetify/lib/components/VList/VListItem.js");
+/* harmony import */ var vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! vuetify/lib/components/VList */ "./node_modules/vuetify/lib/components/VList/VListItemAvatar.js");
+/* harmony import */ var vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! vuetify/lib/components/VList */ "./node_modules/vuetify/lib/components/VList/index.js");
+/* harmony import */ var vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! vuetify/lib/components/VList */ "./node_modules/vuetify/lib/components/VList/VListItemIcon.js");
+/* harmony import */ var vuetify_lib_components_VNavigationDrawer__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! vuetify/lib/components/VNavigationDrawer */ "./node_modules/vuetify/lib/components/VNavigationDrawer/VNavigationDrawer.js");
 
 
 
@@ -567,7 +740,11 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
 
 
 
-_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_4___default()(component, {VDivider: vuetify_lib_components_VDivider__WEBPACK_IMPORTED_MODULE_5__["default"],VImg: vuetify_lib_components_VImg__WEBPACK_IMPORTED_MODULE_6__["default"],VList: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_7__["default"],VListItem: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_8__["default"],VListItemAvatar: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_9__["default"],VListItemContent: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_10__.VListItemContent,VListItemTitle: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_10__.VListItemTitle,VNavigationDrawer: vuetify_lib_components_VNavigationDrawer__WEBPACK_IMPORTED_MODULE_11__["default"]})
+
+
+
+
+_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_4___default()(component, {VCard: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_5__["default"],VDivider: vuetify_lib_components_VDivider__WEBPACK_IMPORTED_MODULE_6__["default"],VIcon: vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_7__["default"],VImg: vuetify_lib_components_VImg__WEBPACK_IMPORTED_MODULE_8__["default"],VList: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_9__["default"],VListGroup: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_10__["default"],VListItem: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_11__["default"],VListItemAvatar: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_12__["default"],VListItemContent: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_13__.VListItemContent,VListItemIcon: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_14__["default"],VListItemTitle: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_13__.VListItemTitle,VNavigationDrawer: vuetify_lib_components_VNavigationDrawer__WEBPACK_IMPORTED_MODULE_15__["default"]})
 
 
 /* hot reload */

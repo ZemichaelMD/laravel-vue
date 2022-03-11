@@ -47,7 +47,7 @@
 
       <v-list :tile="false" nav>
         <div>
-          <v-btn class="ml-2" min-width="0" text="Logout" v-bind="attrs" v-on="on">
+          <v-btn @click="logout" class="ml-2" min-width="0" text="Logout" v-bind="attrs" v-on="on">
             <div class="text-md-body-1">Logout</div>
           </v-btn>
         </div>
@@ -118,6 +118,11 @@ export default {
   },
 
   methods: {
+    logout() {
+      axios.post("/logout").then((response) => {
+        window.location.href = "login";
+      });
+    },
     ...mapMutations({
       setDrawer: "SET_DRAWER",
     }),

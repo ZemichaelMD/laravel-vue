@@ -1,107 +1,69 @@
 <template>
-  <v-list-group
-    :group="group"
-    :prepend-icon="item.icon"
-    :sub-group="subGroup"
-    append-icon="mdi-menu-down"
-    :color="barColor !== 'rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.7)' ? 'white' : 'grey darken-1'"
-  >
-    <template v-slot:activator>
-      <v-list-item-icon v-if="text" class="v-list-item__icon--text" v-text="computedText" />
+  <v-card class="mx-auto" width="300">
+    <v-list>
+      <v-list-item>
+        <v-list-item-icon>
+          <v-icon>mdi-home</v-icon>
+        </v-list-item-icon>
 
-      <v-list-item-avatar v-else-if="item.avatar" class="align-self-center" color="white" contain>
-        <v-img src="https://demos.creative-tim.com/vuetify-material-dashboard/favicon.ico" />
-      </v-list-item-avatar>
+        <v-list-item-title>Home</v-list-item-title>
+      </v-list-item>
 
-      <v-list-item-content>
-        <v-list-item-title v-text="item.title" />
-      </v-list-item-content>
-    </template>
+      <v-list-group :value="true" prepend-icon="mdi-account-circle">
+        <template v-slot:activator>
+          <v-list-item-title>Users</v-list-item-title>
+        </template>
 
-    <template v-for="(child, i) in children">
-      <shared-item-sub-group v-if="child.children" :key="`sub-group-${i}`" :item="child" />
+        <v-list-group :value="true" no-action sub-group>
+          <template v-slot:activator>
+            <v-list-item-content>
+              <v-list-item-title>Admin</v-list-item-title>
+            </v-list-item-content>
+          </template>
 
-      <shared-item v-else :key="`item-${i}`" :item="child" text />
-    </template>
-  </v-list-group>
+          <v-list-item v-for="([title, icon], i) in admins" :key="i" link>
+            <v-list-item-title v-text="title"></v-list-item-title>
+
+            <v-list-item-icon>
+              <v-icon v-text="icon"></v-icon>
+            </v-list-item-icon>
+          </v-list-item>
+        </v-list-group>
+
+        <v-list-group no-action sub-group>
+          <template v-slot:activator>
+            <v-list-item-content>
+              <v-list-item-title>Actions</v-list-item-title>
+            </v-list-item-content>
+          </template>
+
+          <v-list-item v-for="([title, icon], i) in cruds" :key="i" link>
+            <v-list-item-title v-text="title"></v-list-item-title>
+
+            <v-list-item-icon>
+              <v-icon v-text="icon"></v-icon>
+            </v-list-item-icon>
+          </v-list-item>
+        </v-list-group>
+      </v-list-group>
+    </v-list>
+  </v-card>
 </template>
 
 <script>
-// Utilities
-import kebabCase from "lodash/kebabCase";
-import { mapState } from "vuex";
-
 export default {
-  name: "ItemGroup",
-
-  inheritAttrs: false,
-
-  props: {
-    item: {
-      type: Object,
-      default: () => ({
-        avatar: undefined,
-        group: undefined,
-        title: undefined,
-        children: [],
-      }),
-    },
-    subGroup: {
-      type: Boolean,
-      default: false,
-    },
-    text: {
-      type: Boolean,
-      default: false,
-    },
-  },
-
-  computed: {
-    ...mapState(["barColor"]),
-    children() {
-      return this.item.children.map((item) => ({
-        ...item,
-        to: !item.to ? undefined : `${this.item.group}/${item.to}`,
-      }));
-    },
-    computedText() {
-      if (!this.item || !this.item.title) return "";
-
-      let text = "";
-
-      this.item.title.split(" ").forEach((val) => {
-        text += val.substring(0, 1);
-      });
-
-      return text;
-    },
-    group() {
-      return this.genGroup(this.item.children);
-    },
-  },
-
-  methods: {
-    genGroup(children) {
-      return children
-        .filter((item) => item.to)
-        .map((item) => {
-          const parent = item.group || this.item.group;
-          let group = `${parent}/${kebabCase(item.to)}`;
-
-          if (item.children) {
-            group = `${group}|${this.genGroup(item.children)}`;
-          }
-
-          return group;
-        })
-        .join("|");
-    },
-  },
+  name: "ListGroup",
+  data: () => ({
+    admins: [
+      ["Management", "mdi-account-multiple-outline"],
+      ["Settings", "mdi-cog-outline"],
+    ],
+    cruds: [
+      ["Create", "mdi-plus-outline"],
+      ["Read", "mdi-file-outline"],
+      ["Update", "mdi-update"],
+      ["Delete", "mdi-delete"],
+    ],
+  }),
 };
 </script>
-
-<style>
-.v-list-group__activator p {
-  margin-bottom: 0;
-}
-</style>

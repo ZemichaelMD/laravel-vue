@@ -123,7 +123,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     };
   },
   computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapState)(["drawer"])),
-  methods: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapMutations)({
+  methods: _objectSpread({
+    logout: function logout() {
+      axios.post("/logout").then(function (response) {
+        window.location.href = "login";
+      });
+    }
+  }, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapMutations)({
     setDrawer: "SET_DRAWER"
   }))
 });
@@ -915,6 +921,7 @@ var render = function () {
                       {
                         staticClass: "ml-2",
                         attrs: { "min-width": "0", text: "Logout" },
+                        on: { click: _vm.logout },
                       },
                       "v-btn",
                       _vm.attrs,

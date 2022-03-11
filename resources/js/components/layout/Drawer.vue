@@ -33,34 +33,67 @@
     </v-list>
 
     <v-divider class="mb-2" />
-
     <v-list expand nav>
       <!-- Style cascading bug  -->
       <!-- https://github.com/vuetifyjs/vuetify/pull/8574 -->
       <div />
+      <template>
+        <v-card class="mx-auto" width="300">
+          <v-list>
+            <!-- Home Icon -->
+            <v-list-item>
+              <v-list-item-icon>
+                <v-icon>mdi-home</v-icon>
+              </v-list-item-icon>
 
-      <template v-for="(item, i) in computedItems">
-        <shared-item-group v-if="item.children" :key="`group-${i}`" :item="item">
-          <!--  -->
-        </shared-item-group>
+              <v-list-item-title>Home</v-list-item-title>
+            </v-list-item>
 
-        <shared-item v-else :key="`item-${i}`" :item="item" />
+            <v-list-group :value="true" prepend-icon="mdi-account-circle">
+              <template v-slot:activator>
+                <v-list-item-title>Users</v-list-item-title>
+              </template>
+
+              <v-list-group :value="true" no-action sub-group>
+                <template v-slot:activator>
+                  <v-list-item-content>
+                    <v-list-item-title>Admin</v-list-item-title>
+                  </v-list-item-content>
+                </template>
+
+                <v-list-item v-for="([title, icon], i) in admins" :key="i" link>
+                  <v-list-item-title v-text="title"></v-list-item-title>
+
+                  <v-list-item-icon>
+                    <v-icon v-text="icon"></v-icon>
+                  </v-list-item-icon>
+                </v-list-item>
+              </v-list-group>
+
+              <v-list-group no-action sub-group>
+                <template v-slot:activator>
+                  <v-list-item-content>
+                    <v-list-item-title>Actions</v-list-item-title>
+                  </v-list-item-content>
+                </template>
+
+                <v-list-item v-for="([title, icon], i) in cruds" :key="i" link>
+                  <v-list-item-title v-text="title"></v-list-item-title>
+
+                  <v-list-item-icon>
+                    <v-icon v-text="icon"></v-icon>
+                  </v-list-item-icon>
+                </v-list-item>
+              </v-list-group>
+            </v-list-group>
+          </v-list>
+        </v-card>
       </template>
 
       <!-- Style cascading bug  -->
       <!-- https://github.com/vuetifyjs/vuetify/pull/8574 -->
       <div />
     </v-list>
-
-    <template v-slot:append>
-      <shared-item
-        :item="{
-                    title: $t('upgrade'),
-                    icon: 'mdi-package-up',
-                    to: '/upgrade',
-                }"
-      />
-    </template>
   </v-navigation-drawer>
 </template>
 
@@ -79,6 +112,16 @@ export default {
   },
 
   data: () => ({
+    admins: [
+      ["Management", "mdi-account-multiple-outline"],
+      ["Settings", "mdi-cog-outline"],
+    ],
+    cruds: [
+      ["Create", "mdi-plus-outline"],
+      ["Read", "mdi-file-outline"],
+      ["Update", "mdi-update"],
+      ["Delete", "mdi-delete"],
+    ],
     items: [
       {
         icon: "mdi-view-dashboard",
