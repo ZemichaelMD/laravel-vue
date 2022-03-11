@@ -1,4 +1,4 @@
-{{-- This is for normal blade templates --}}
+{{-- This is for vue --}}
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
@@ -23,7 +23,9 @@
 </head>
 
 <body>
-    @yield("content")
+    <div id="app">
+        <index></index>
+    </div>
 </body>
 
 </html>
